@@ -1,0 +1,53 @@
+import networkx as nx
+%matplotlib inline
+G = nx.Graph()
+G.add_nodes_from([1,2,3,4])
+G.add_edges_from([(1,2),(2,3),(1,3),(1,4)])
+nx.draw(G, with_labels=True)
+nx.has_path(G, 3, 4)
+list(nx.all_simple_paths(G, 3, 4))
+nx.shortest_path(G, 3, 4)
+nx.shortest_path_length(G, 3, 4)
+nx.is_connected(G)
+G = nx.Graph()
+G.add_cycle((1,2,3))
+G.add_edge(4,5)
+nx.draw(G, with_labels=True)
+nx.is_connected(G)
+nx.has_path(G, 3, 5)
+nx.shortest_path(G, 3, 5)
+nx.number_connected_components(G)
+list(nx.connected_components(G))
+components = list(nx.connected_components(G))
+len(components[0])
+max(nx.connected_components(G), key=len)
+core_nodes = max(nx.connected_components(G), key=len)
+core = G.subgraph(core_nodes)
+nx.draw(core, with_labels=True)
+D = nx.DiGraph()
+D.add_edges_from([
+    (1,2),
+    (2,3),
+    (3,2), (3,4), (3,5),
+    (4,2), (4,5), (4,6),
+    (5,6),
+    (6,4),
+])
+nx.draw(D, with_labels=True)
+nx.has_path(D, 1, 4)
+nx.has_path(D, 4, 1)
+nx.shortest_path(D, 2, 5)
+nx.shortest_path(D, 5, 2)
+nx.is_strongly_connected(D)
+nx.is_weakly_connected(D)
+# This will raise an error
+nx.is_connected(D)
+list(nx.weakly_connected_components(D))
+list(nx.strongly_connected_components(D))
+G = nx.read_graphml('../datasets/openflights/openflights_usa.graphml.gz')
+G.nodes['IND']
+G.nodes['IND']['name']
+
+
+وقد تم حل EXERCISE 1,2,3 on jupyter
+

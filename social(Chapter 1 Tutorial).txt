@@ -1,0 +1,61 @@
+import networkx as nx
+%matplotlib inline
+nx.__version__
+# a "plain" graph is undirected
+G = nx.Graph()
+# give each a node a 'name', which is a letter in this case.
+G.add_node('a')
+# the add_nodes_from method allows adding nodes from a sequence, in this case a list
+nodes_to_add = ['b', 'c', 'd']
+G.add_nodes_from(nodes_to_add)
+# add edge from 'a' to 'b'
+# since this graph is undirected, the order doesn't matter here
+G.add_edge('a', 'b')
+# just like add_nodes_from, we can add edges from a sequence
+# edges should be specified as 2-tuples
+edges_to_add = [('a', 'c'), ('b', 'c'), ('c', 'd')]
+G.add_edges_from(edges_to_add)
+# draw the graph
+nx.draw(G, with_labels=True)
+nx.draw(G,
+        with_labels=True,
+        node_color='blue',
+        node_size=1600,
+        font_color='white',
+        font_size=16,
+        )
+for node in G.nodes:
+    print(node)
+for edge in G.edges:
+    print(edge)
+G.number_of_nodes()
+G.number_of_edges()
+# list of neighbors of node 'b'
+G.neighbors('b')
+for neighbor in G.neighbors('b'):
+    print(neighbor)
+list(G.neighbors('b'))
+nx.is_tree(G)
+nx.is_connected(G)
+G.has_node('a')
+G.has_node('x')
+'d' in G.nodes
+G.has_edge('a', 'b')
+G.has_edge('a', 'd')
+('c', 'd') in G.edges
+len(list(G.neighbors('a')))
+G.degree('a')
+D = nx.DiGraph()
+D.add_edges_from([(1,2),(2,3),(3,2),(3,4),(3,5),(4,5),(4,6),(5,6),(6,4),(4,2)])
+nx.draw(D, with_labels=True)
+D.has_edge(1,2)
+D.has_edge(2,1)
+print('Successors of 2:', list(D.successors(2)))
+print('Predecessors of 2:', list(D.predecessors(2)))
+D.in_degree(2)
+D.out_degree(2)
+D.degree(2)
+print('Successors of 2:', list(D.successors(2)))
+print('"Neighbors" of 2:', list(D.neighbors(2)))
+
+وقد تم حل EXERCISE 1,2,3 on jupyter
